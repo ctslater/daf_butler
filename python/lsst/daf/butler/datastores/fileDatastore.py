@@ -2866,6 +2866,7 @@ def _to_file_info_payload(
     datastoreRecords.path = relative_path
 
     return FileDatastoreGetPayloadFileInfo(
-        url=location.uri.generate_presigned_get_url(expiration_time_seconds=url_expiration_time_seconds),
+        url=(location.uri.generate_presigned_get_url(expiration_time_seconds=url_expiration_time_seconds)
+             if not location.uri.isLocal else location.uri.geturl()),
         datastoreRecords=datastoreRecords,
     )

@@ -12,7 +12,7 @@ from lsst.daf.butler.datastores.file_datastore.get import (
     generate_datastore_get_information,
     get_dataset_as_python_object_from_get_info,
 )
-from pydantic import AnyHttpUrl
+from pydantic import AnyHttpUrl, AnyUrl
 
 
 class FileDatastoreGetPayloadFileInfo(pydantic.BaseModel):
@@ -22,7 +22,7 @@ class FileDatastoreGetPayloadFileInfo(pydantic.BaseModel):
     # arbitrary URLs here would allow the server to trick the client into
     # fetching data from any file on its local filesystem or from remote
     # storage using credentials laying around in the environment.
-    url: AnyHttpUrl
+    url: AnyUrl
     """An HTTP URL that can be used to read the file."""
 
     datastoreRecords: SerializedStoredFileInfo
